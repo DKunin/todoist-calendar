@@ -2,12 +2,20 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Calendar DEMO</title>
+    <title>Todoist calendar</title>
     <link rel="stylesheet" href="vendor/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./vendor/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./vendor/tui-calendar.css" />
     <link rel="stylesheet" type="text/css" href="./css/default.css"></link>
     <link rel="stylesheet" type="text/css" href="./css/icons.css"></link>
+    <style>
+        .tui-full-calendar-popup-detail .tui-full-calendar-section-detail, .tui-full-calendar-popup-detail .tui-full-calendar-section-button {
+            display: none;
+        }
+        .tui-full-calendar-popup-detail .tui-full-calendar-popup-container {
+            min-height: 100px;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -35,35 +43,6 @@
                             <i class="calendar-icon ic_view_month"></i>Month
                         </a>
                     </li>
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weeks2">
-                            <i class="calendar-icon ic_view_week"></i>2 weeks
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weeks3">
-                            <i class="calendar-icon ic_view_week"></i>3 weeks
-                        </a>
-                    </li>
-                    <li role="presentation" class="dropdown-divider"></li>
-                    <li role="presentation">
-                        <a role="menuitem" data-action="toggle-workweek">
-                            <input type="checkbox" class="tui-full-calendar-checkbox-square" value="toggle-workweek" checked>
-                            <span class="checkbox-title"></span>Show weekends
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" data-action="toggle-start-day-1">
-                            <input type="checkbox" class="tui-full-calendar-checkbox-square" value="toggle-start-day-1">
-                            <span class="checkbox-title"></span>Start Week on Monday
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" data-action="toggle-narrow-weekend">
-                            <input type="checkbox" class="tui-full-calendar-checkbox-square" value="toggle-narrow-weekend">
-                            <span class="checkbox-title"></span>Narrower than weekdays
-                        </a>
-                    </li>
                 </ul>
             </span>
             <span id="menu-navi">
@@ -76,6 +55,9 @@
                 </button>
             </span>
             <span id="renderRange" class="render-range"></span>
+            <input type="text" name="api_key" />
+            <input type="text" name="filter" />
+            <button type="button" class="btn btn-default btn-sm js-update-data">Update</button>
         </div>
         <div id="calendar"></div>
     </div>
@@ -83,8 +65,6 @@
     <script type="text/javascript" src="./vendor/jquery-3.2.1.slim.min.js"></script>
     <script type="text/javascript" src="./vendor/bootstrap.min.js"></script>
     <script type="text/javascript" src="./vendor/tui-code-snippet.min.js"></script>
-    <script type="text/javascript" src="./vendor/tui-time-picker.min.js"></script>
-    <script type="text/javascript" src="./vendor/tui-date-picker.min.js"></script>
     <script type="text/javascript" src="./vendor/moment.min.js"></script>
     <script type="text/javascript" src="./vendor/tui-calendar.js"></script>
     <script type="text/javascript" src="./js/data/calendars.js"></script>

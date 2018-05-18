@@ -43,13 +43,11 @@ function ScheduleInfo() {
 }
 
 function generateTime(schedule, renderStart, renderEnd) {
-    var startDate = moment(renderStart.getTime());
-    var endDate = moment(renderEnd.getTime());
-
     schedule.isAllday = true;
     schedule.category = 'allday';
-    schedule.start = startDate.toDate();
-    schedule.end = endDate.toDate();
+
+    schedule.start = renderStart;
+    schedule.end = renderEnd;
 }
 
 function generateRandomSchedule(calendar, todoistItem) {
@@ -61,7 +59,7 @@ function generateRandomSchedule(calendar, todoistItem) {
     schedule.calendarId = calendar.id;
 
     schedule.title = todoistItem.content;
-    schedule.isReadOnly = true;
+    schedule.isReadOnly = false;
     generateTime(schedule, renderStart, renderEnd);
 
     schedule.isPrivate = false;
@@ -75,38 +73,13 @@ function generateRandomSchedule(calendar, todoistItem) {
     ScheduleList.push(schedule);
 }
 
-function generateSchedule(viewName, renderStart, renderEnd) {
+function generateSchedule(data = []) {
     ScheduleList = [];
-
-    const exampleJson = [
-        {
-            id: 2647129492,
-            project_id: 2168270848,
-            content: 'Проект отчетности по сринтам для Тулов',
-            completed: false,
-            order: 255,
-            indent: 1,
-            priority: 1,
-            comment_count: 0,
-            due: { recurring: false, string: '15 May', date: '2018-05-15' },
-            url: 'https://todoist.com/showTask?id=2647129492'
-        },
-        {
-            id: 2649839213,
-            project_id: 2168270848,
-            content: 'Поправить поведение Pass на рабочем компе',
-            completed: false,
-            order: 260,
-            indent: 1,
-            priority: 1,
-            comment_count: 0,
-            due: { recurring: false, string: '15 May', date: '2018-05-15' },
-            url: 'https://todoist.com/showTask?id=2649839213'
-        }
-    ];
     CalendarList.forEach(function(calendar) {
-        exampleJson.forEach(singleTodoistItem => {
-            generateRandomSchedule(calendar, singleTodoistItem);
-        })
+        data.forEach(singleTodoistItem => {
+            if (singleTodoistItem.due) {
+                generateRandomSchedule(calendar, singleTodoistItem);
+            }
+        });
     });
 }

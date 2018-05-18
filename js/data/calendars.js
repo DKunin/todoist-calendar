@@ -49,9 +49,9 @@ function hexToRGBA(hex) {
     calendar.id = String(id);
     calendar.name = 'Todoist Calendar';
     calendar.color = '#ffffff';
-    calendar.bgColor = '#9e5fff';
-    calendar.dragBgColor = '#9e5fff';
-    calendar.borderColor = '#9e5fff';
+    calendar.bgColor = '#797979';
+    calendar.dragBgColor = '#797979';
+    calendar.borderColor = '#797979';
     addCalendar(calendar);
 
 })();
