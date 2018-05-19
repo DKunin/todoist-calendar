@@ -271,8 +271,9 @@
     }
 
     function updateCalendarEvents(auth, filter) {
+        const filterCode = filter ? `?filter=${escape(filter)}` : '';
         fetch(
-            `https://beta.todoist.com/API/v8/tasks?filter=${escape(filter)}`,
+            `https://beta.todoist.com/API/v8/tasks${filterCode}`,
             {
                 headers: {
                     Authorization: `Bearer ${auth}`
@@ -292,7 +293,7 @@
 
         inputNode.value = localStorage.getItem('apiKey') || null;
         inputFilterNode.value = localStorage.getItem('filter') || null;
-        if (inputNode.value && inputFilterNode.value) {
+        if (inputNode.value) {
             updateCalendarEvents(inputNode.value, inputFilterNode.value);
         }
 
@@ -300,7 +301,7 @@
         $('.dropdown-menu a[role="menuitem"]').on('click', onClickMenu);
 
         window.addEventListener('resize', resizeThrottled);
-        //#Inbox, #Avito
+
         document
             .querySelector('.js-update-data')
             .addEventListener('click', function() {
