@@ -16,25 +16,29 @@ let getDayIndex = function(month, year, index) {
 
 // https://github.com/datetime/current-week-number/blob/master/index.js
 
-let generateDays = function(month, year, original = false) {
-    let daysOfCurMonth = daysInMonth(month, year);
+let generateDays = function(date, daysInWeek = 7) {
     let daysArray = [];
     let index = 0;
-
-    while (index < daysOfCurMonth) {
+    while (index < daysInWeek) {
         daysArray.push(index);
         index = index += 1;
     }
+
     const today = new Date().toDateString();
-    return daysArray.map(function(day, i) {
-        const originalDate = new Date(year, month, day);
+    const year = date.getFullYear();
+
+    return daysArray.map(function(dayIndex, index) {
+        const originalDate = new Date(year, date.getMonth(), date.getDate() + dayIndex);
+        const day = originalDate.getDate();
+        const month = originalDate.getMonth();
+        const dateIndex = originalDate.getDay();
+
         return {
-            day: day + 1,
+            day,
             today: today === originalDate.toDateString(),
-            dayIndex: getDayIndex(month, year, i),
-            currentMonth: original,
-            month: month,
-            year: year,
+            dateIndex,
+            month,
+            year,
             originalDate,
             week: currentWeekNumber(originalDate)
         };

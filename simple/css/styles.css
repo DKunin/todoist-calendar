@@ -1,0 +1,10 @@
+body, html {
+    font-family: Helvetica;
+}
+
+.week-holder {
+    display: flex;
+}
+.single-week-day {
+    width: calc(100% / 7);
+}
