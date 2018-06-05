@@ -18,5 +18,7 @@
   },
   "homepage": "https://github.com/dkunin/todoist-calendar",
   "keywords": [],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+  }
 }
