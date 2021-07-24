@@ -273,7 +273,7 @@
     function updateCalendarEvents(auth, filter) {
         const filterCode = filter ? `?filter=${escape(filter)}` : '';
         fetch(
-            `https://beta.todoist.com/API/v8/tasks${filterCode}`,
+            `https://api.todoist.com/rest/v1/tasks${filterCode}`,
             {
                 headers: {
                     Authorization: `Bearer ${auth}`

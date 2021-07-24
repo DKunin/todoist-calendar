@@ -100,7 +100,7 @@ const app = {
         const filterCode = filter ? `?filter=${escape(filter)}` : '';
         const query = new URLSearchParams(location.search);
         const auth = query.get('api');
-        fetch(`https://beta.todoist.com/API/v8/tasks${filterCode}`, {
+        fetch(`https://api.todoist.com/rest/v1/tasks${filterCode}`, {
             headers: {
                 Authorization: `Bearer ${auth}`
             }
