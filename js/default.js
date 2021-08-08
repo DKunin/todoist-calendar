@@ -281,9 +281,32 @@
             }
         )
             .then(res => res.json())
+            .then(setSchedules)
+            .catch(err => console.log(err));
+    }
+
+    function updateCalendarEvent(event) {
+        const inputNode = document.querySelector('[name="api_key"]');
+        const auth = inputNode.value;
+        const evst = event.start._date;
+
+        fetch(
+            `https://api.todoist.com/rest/v1/tasks/${event.schedule.id}`,
+            {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${auth}`,
+                    'Content-Type': 'application/json;'
+                    //,
+                    //'X-Request-Id': $(uuidgen)"
+                },
+                body: JSON.stringify({ due_date: evst.toJSON().split('T')[0] })
+            }
+        )
             .then(res => {
-                setSchedules(res);
+                document.querySelector('.js-update-data').click();
             })
+            // .then(setSchedules)
             .catch(err => console.log(err));
     }
 
@@ -325,6 +348,8 @@
 
     setDropdownCalendarType();
     setEventListener();
+
+    cal.on('beforeUpdateSchedule', updateCalendarEvent);
 })(window, tui.Calendar);
 
 // // set calendars
